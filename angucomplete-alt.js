@@ -117,6 +117,12 @@
         }
       });
 
+      scope.$on('angucomplete-alt:doSearch', function (event, elementId) {
+        if (!elementId || elementId === scope.id) {
+          performSearch();
+        }
+      });
+
       scope.$on('angucomplete-alt:clearInput', function (event, elementId) {
         if (!elementId || elementId === scope.id) {
           scope.searchStr = null;
@@ -125,6 +131,20 @@
           clearResults();
         }
       });
+
+        function performSearch() {
+          initResults();
+
+          if (searchTimer) {
+            $timeout.cancel(searchTimer);
+          }
+
+          scope.searching = true;
+
+          searchTimer = $timeout(function() {
+            searchTimerComplete(scope.searchStr);
+          }, scope.pause);
+        }
 
       // #194 dropdown list not consistent in collapsing (bug).
       function clickoutHandlerForDropdown(event) {
@@ -251,17 +271,7 @@
           if (!scope.searchStr || scope.searchStr === '') {
             scope.showDropdown = false;
           } else if (scope.searchStr.length >= minlength) {
-            initResults();
-
-            if (searchTimer) {
-              $timeout.cancel(searchTimer);
-            }
-
-            scope.searching = true;
-
-            searchTimer = $timeout(function() {
-              searchTimerComplete(scope.searchStr);
-            }, scope.pause);
+            performSearch();
           }
 
           if (validState && validState !== scope.searchStr && !scope.clearSelected) {
