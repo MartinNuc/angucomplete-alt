@@ -132,19 +132,19 @@
         }
       });
 
-        function performSearch() {
-          initResults();
+      function performSearch() {
+        initResults();
 
-          if (searchTimer) {
-            $timeout.cancel(searchTimer);
-          }
-
-          scope.searching = true;
-
-          searchTimer = $timeout(function() {
-            searchTimerComplete(scope.searchStr);
-          }, scope.pause);
+        if (searchTimer) {
+          $timeout.cancel(searchTimer);
         }
+
+        scope.searching = true;
+
+        searchTimer = $timeout(function() {
+          searchTimerComplete(scope.searchStr);
+        }, scope.pause);
+      }
 
       // #194 dropdown list not consistent in collapsing (bug).
       function clickoutHandlerForDropdown(event) {
