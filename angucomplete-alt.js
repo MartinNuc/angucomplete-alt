@@ -651,12 +651,12 @@
           result.description = extractValue(result.originalObject, scope.descriptionField);
         }
 
-        if (scope.clearSelected) {
+        if (scope.clearSelected === true) {
           scope.searchStr = null;
-        }
-        else {
+        } else {
           scope.searchStr = result.title;
         }
+
         callOrAssign(result);
         clearResults();
       };
