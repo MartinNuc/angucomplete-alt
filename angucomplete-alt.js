@@ -98,7 +98,6 @@
       scope.currentIndex = null;
       scope.searching = false;
       scope.$watch('initialValue', function(newval, oldval) {
-        if (newval) {
           if (typeof newval === 'object') {
             scope.searchStr = extractTitle(newval);
             callOrAssign({originalObject: newval});
@@ -111,7 +110,6 @@
           }
 
           handleRequired(true);
-        }
       });
 
       scope.$on('angucomplete-alt:doSearch', function (event, elementId) {
