@@ -104,9 +104,7 @@
           } else if (typeof newval === 'string' && newval.length > 0) {
             scope.searchStr = newval;
           } else {
-            if (console && console.error) {
-              console.error('Tried to set initial value of angucomplete to', newval, 'which is an invalid value');
-            }
+            scope.searchStr = '';
           }
 
           handleRequired(true);
@@ -649,7 +647,8 @@
           result.description = extractValue(result.originalObject, scope.descriptionField);
         }
 
-        if (scope.clearSelected === true) {
+        var isTrueSet = (scope.clearSelected === 'true');
+        if (isTrueSet) {
           scope.searchStr = null;
         } else {
           scope.searchStr = result.title;
