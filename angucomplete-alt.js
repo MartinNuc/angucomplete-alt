@@ -79,7 +79,6 @@
       var dd = elem[0].querySelector('.angucomplete-dropdown');
       var isScrollOn = false;
       var mousedownOn = null;
-      var unbindInitialValue;
       var displaySearching;
       var displayNoResults;
 
@@ -655,7 +654,10 @@
         }
 
         callOrAssign(result);
-        clearResults();
+        // remove selected item from results
+        scope.results = _.filter(scope.results, function (item) {
+          return item.originalObject != result.originalObject;
+        });
       };
 
       scope.inputChangeHandler = function(str) {
