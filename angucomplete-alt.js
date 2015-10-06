@@ -96,17 +96,17 @@
 
       scope.currentIndex = null;
       scope.searching = false;
-      scope.$watch('initialValue', function(newval, oldval) {
-          if (typeof newval === 'object') {
-            scope.searchStr = extractTitle(newval);
-            callOrAssign({originalObject: newval});
-          } else if (typeof newval === 'string' && newval.length > 0) {
-            scope.searchStr = newval;
-          } else {
-            scope.searchStr = '';
-          }
+      scope.$watch('initialValue', function (newval, oldval) {
+        if (typeof newval === 'object') {
+          scope.searchStr = extractTitle(newval);
+          callOrAssign({originalObject: newval});
+        } else if (typeof newval === 'string' && newval.length > 0) {
+          scope.searchStr = newval;
+        } else {
+          scope.searchStr = '';
+        }
 
-          handleRequired(true);
+        handleRequired(true);
       });
 
       scope.$on('angucomplete-alt:doSearch', function (event, elementId) {
@@ -656,8 +656,9 @@
         callOrAssign(result);
         // remove selected item from results
         scope.results = _.filter(scope.results, function (item) {
-          return item.originalObject != result.originalObject;
+          return item.originalObject !== result.originalObject;
         });
+        inputField.focus();
       };
 
       scope.inputChangeHandler = function(str) {
