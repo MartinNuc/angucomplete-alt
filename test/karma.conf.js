@@ -13,6 +13,7 @@ module.exports = function(config) {
       // Dependencies
       'bower_components/sizzle/dist/sizzle.js',
       'bower_components/jquery/dist/jquery.js',
+      'bower_components/lodash-compat/lodash.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       

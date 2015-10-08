@@ -561,6 +561,14 @@
               originalObject: responseData[i]
             };
 
+            // remove already selected items from results
+            if (typeof scope.selectedItems !== 'undefined') {
+              scope.results = _.filter(scope.results, function (item) {
+                var found = _.findWhere(scope.selectedItems, {id: item.originalObject.id});
+                return !found;
+              });
+            }
+
             if (scope.autoMatch) {
               checkExactMatch(scope.results[scope.results.length-1],
                   {title: text, desc: description || ''}, scope.searchStr);
@@ -655,10 +663,17 @@
 
         callOrAssign(result);
         // remove selected item from results
-        scope.results = _.filter(scope.results, function (item) {
-          return item.originalObject !== result.originalObject;
-        });
-        inputField.focus();
+        console.log('jsem tu')
+        if (typeof scope.selectedItems !== 'undefined') {
+          scope.results = _.filter(scope.results, function (item) {
+            return item.originalObject !== result.originalObject;
+          });
+          $timeout(function() {
+            inputField.focus();
+          }, 200);
+        } else {
+          clearResults();
+        }
       };
 
       scope.inputChangeHandler = function(str) {
@@ -776,7 +791,8 @@
         autoMatch: '@',
         focusOut: '&',
         focusIn: '&',
-        inputName: '@'
+        inputName: '@',
+        selectedItems: '='
       },
       templateUrl: function(element, attrs) {
         return attrs.templateUrl || TEMPLATE_URL;
