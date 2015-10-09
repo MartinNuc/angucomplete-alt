@@ -653,11 +653,10 @@
           result.title = extractTitle(result.originalObject);
           result.description = extractValue(result.originalObject, scope.descriptionField);
         }
-
         var isTrueSet = (scope.clearSelected === 'true');
         if (isTrueSet) {
           scope.searchStr = null;
-        } else {
+        } else if (typeof scope.selectedItems === 'undefined') {
           scope.searchStr = result.title;
         }
 
