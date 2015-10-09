@@ -663,7 +663,6 @@
 
         callOrAssign(result);
         // remove selected item from results
-        console.log('jsem tu')
         if (typeof scope.selectedItems !== 'undefined') {
           scope.results = _.filter(scope.results, function (item) {
             return item.originalObject !== result.originalObject;
