@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         // Lint & run unit tests in Karma
         // Just running `$ grunt watch` will only lint your code; to run tests
         // on watch, use `$ grunt watch:karma` to start a Karma server first
-        tasks: ['jshint', 'karma:unit:run']
+        tasks: ['karma:unit:run']
       }
     },
     karma: {
@@ -62,7 +62,7 @@ module.exports = function (grunt) {
 
   // Register tasks
   grunt.registerTask('default', ['jshint', 'karma:unit']);
-  grunt.registerTask('watch', ['jshint', 'karma:watch']);
+  grunt.registerTask('watch', ['karma:watch']);
   grunt.registerTask('build', ['jshint', 'uglify:build']);
 
   grunt.initConfig(initConfig);
