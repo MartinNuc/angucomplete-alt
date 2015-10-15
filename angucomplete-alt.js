@@ -666,9 +666,6 @@
           scope.results = _.filter(scope.results, function (item) {
             return item.originalObject !== result.originalObject;
           });
-          $timeout(function() {
-            inputField.focus();
-          }, 200);
         } else {
           clearResults();
         }
