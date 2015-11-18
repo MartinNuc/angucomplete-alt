@@ -102,6 +102,7 @@
           callOrAssign({originalObject: newval});
         } else if (typeof newval === 'string' && newval.length > 0) {
           scope.searchStr = newval;
+          performSearch();
         } else {
           scope.searchStr = '';
         }
