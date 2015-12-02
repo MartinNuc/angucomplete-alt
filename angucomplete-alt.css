@@ -7,16 +7,14 @@
     border-width: 1px;
     border-style: solid;
     border-radius: 2px;
-    width: 250px;
-    padding: 6px;
+    padding: 0 0 3px 3px;
     cursor: pointer;
     z-index: 9999;
     position: absolute;
-    /*top: 32px;
-    left: 0px;
-    */
     margin-top: -6px;
     background-color: #ffffff;
+    right: 0;
+    left: 0;
 }
 
 .angucomplete-searching {
@@ -63,4 +61,14 @@
     background-size: contain;
     height: 34px;
     width: 34px;
+}
+
+.search-results {
+  clear: both;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.close-search-results {
+  padding-right: 3px;
 }
