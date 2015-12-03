@@ -301,6 +301,12 @@
             scope.showDropdown = false;
           } else if (scope.searchStr.length >= minlength) {
             performSearch();
+
+            if (validState && validState !== scope.searchStr && !scope.clearSelected) {
+              scope.$apply(function () {
+                callOrAssign();
+              });
+            }
           }
         }
       }
