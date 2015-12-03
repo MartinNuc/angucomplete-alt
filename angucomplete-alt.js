@@ -135,6 +135,12 @@
         }
       });
 
+      scope.$on('angucomplete-alt:performSearch', function (event, elementId) {
+        if (!elementId || elementId === scope.id) {
+            performSearch();
+          }
+      });
+
       function handleInputChange(newval, initial) {
         if (newval) {
           if (typeof newval === 'object') {
@@ -150,6 +156,20 @@
 
           handleRequired(true);
         }
+      }
+
+      function performSearch() {
+        initResults();
+
+        if (searchTimer) {
+          $timeout.cancel(searchTimer);
+        }
+
+        scope.searching = true;
+
+        searchTimer = $timeout(function() {
+          searchTimerComplete(scope.searchStr);
+        }, scope.pause);
       }
 
       // #194 dropdown list not consistent in collapsing (bug).
@@ -277,23 +297,7 @@
           if (!scope.searchStr || scope.searchStr === '') {
             scope.showDropdown = false;
           } else if (scope.searchStr.length >= minlength) {
-            initResults();
-
-            if (searchTimer) {
-              $timeout.cancel(searchTimer);
-            }
-
-            scope.searching = true;
-
-            searchTimer = $timeout(function() {
-              searchTimerComplete(scope.searchStr);
-            }, scope.pause);
-          }
-
-          if (validState && validState !== scope.searchStr && !scope.clearSelected) {
-            scope.$apply(function() {
-              callOrAssign();
-            });
+            performSearch();
           }
         }
       }
