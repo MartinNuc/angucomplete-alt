@@ -137,8 +137,11 @@
 
       scope.$on('angucomplete-alt:performSearch', function (event, elementId) {
         if (!elementId || elementId === scope.id) {
-            performSearch();
+          if (!scope.searchStr) {
+            scope.searchStr = '';
           }
+          performSearch();
+        }
       });
 
       function handleInputChange(newval, initial) {
@@ -555,7 +558,7 @@
 
       function searchTimerComplete(str) {
         // Begin the search
-        if (!str || str.length < minlength) {
+        if (typeof str === undefined || str.length < minlength) {
           return;
         }
         if (scope.localData) {
