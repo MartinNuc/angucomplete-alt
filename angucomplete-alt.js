@@ -99,8 +99,6 @@
       scope.searching = false;
       unbindInitialValue = scope.$watch('initialValue', function(newval) {
         if (newval) {
-          // remove scope listener
-          unbindInitialValue();
           // change input
           handleInputChange(newval, true);
         }
