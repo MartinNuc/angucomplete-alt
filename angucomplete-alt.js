@@ -101,6 +101,8 @@
         if (newval) {
           // change input
           handleInputChange(newval, true);
+        }  else {
+          handleInputChange('', true);
         }
       });
 
@@ -143,11 +145,11 @@
       });
 
       function handleInputChange(newval, initial) {
-        if (newval) {
+        if (newval || initial) {
           if (typeof newval === 'object') {
             scope.searchStr = extractTitle(newval);
             callOrAssign({originalObject: newval});
-          } else if (typeof newval === 'string' && newval.length > 0) {
+          } else if (typeof newval === 'string') {
             scope.searchStr = newval;
           } else {
             if (console && console.error) {
